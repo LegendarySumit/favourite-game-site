@@ -2,354 +2,336 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        /* Navigation Bar Styling */
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favourite Games | Dark UI</title>
 
+    <style>
+        /* ================= DESIGN TOKENS ================= */
         :root {
-            --primary-color: rgb(56, 56, 77);
-            --secondary-color: rgb(146, 146, 135);
-            --text-color: rgb(165, 194, 190);
+            --bg-main: #0b1220;
+            --bg-surface: #111827;
+            --bg-elevated: #1f2937;
+
+            --accent: #38bdf8;
+            --accent-soft: #0ea5e9;
+
+            --text-main: #e5e7eb;
+            --text-muted: #9ca3af;
+
+            --border: rgba(255, 255, 255, 0.08);
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
         * {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+            font-family: "Segoe UI", system-ui, sans-serif;
         }
 
+        body {
+            background: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        /* ================= NAVBAR ================= */
         header {
-            width: 100%;
             position: sticky;
             top: 0;
-            z-index: 1;
+            z-index: 100;
+            background: rgba(17, 24, 39, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
         }
 
-        .Nav-bar {
-            width: 100%;
-            padding: 0px;
-            height: 50px;
-            box-sizing: border-box;
-            background-color: var(--primary-color, rgba(55, 88, 101, 0.944));
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .Nav-links {
-            height: 100%;
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            padding: 16px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav h1 {
+            font-size: 22px;
+            color: var(--accent);
+        }
+
+        .nav ul {
             list-style: none;
-        }
-
-        .Nav-links li {
             display: flex;
-            flex: 1;
-            justify-content: center;
-            align-items: center;
-            border-right: 2px solid var(--secondary-color);
-            height: 100%;
-
+            gap: 22px;
+            flex-wrap: wrap;
         }
 
-        .Nav-links li:last-child {
-            border-right: none;
-        }
-
-        .Nav-links li:hover {
-            background-color: rgba(162, 144, 144, 0.129);
-            cursor: pointer;
-        }
-
-        .Nav-links a {
+        .nav a {
             text-decoration: none;
-            font-weight: bold;
-            color: var(--text-color);
+            color: var(--text-muted);
+            font-weight: 600;
+            position: relative;
         }
 
-        /* Upper body styling */
-
-        .hero-section {
-            background: #FFD700;
+        .nav a:hover {
+            color: var(--text-main);
         }
 
-        .overlay-box {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            max-width: 100%;
-            height: 600px;
-            border: 2px solid black;
-            background-color: rgb(32, 27, 58);
-        }
-
-        .section1,
-        .section2 {
-            width: 25%;
-            height: 50%;
-            padding: 20px;
-            background-color: rgba(118, 176, 201, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h3 {
-            text-decoration: underline dotted black 2px;
+        /* ================= HERO ================= */
+        .hero {
+            padding: 100px 20px 80px;
             text-align: center;
-            margin: 5px;
-            font-family: Georgia, Times, 'Times New Roman', serif;
-            font-weight: bold;
+            background:
+                radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 60%),
+                linear-gradient(to bottom, #0b1220, #020617);
+            border-bottom: 1px solid var(--border);
         }
 
-        p {
-            text-align: justify;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            font-weight: bold;
-            font-style: italic;
-            line-height: 1.5;
-            color: black;
+        .hero h2 {
+            font-size: clamp(28px, 5vw, 54px);
+            margin-bottom: 14px;
         }
 
-
-        /* middle body styling */
-
-        .rest-part {
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #FFD700;
-        }
-
-
-        .important {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            width: 50%;
-            background-color: white;
-            border-radius: 40px;
-
-        }
-
-        .love {
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            text-align: center;
+        .hero p {
+            max-width: 720px;
+            margin: auto;
+            color: var(--text-muted);
             font-size: 16px;
         }
 
+        /* ================= SECTION TITLE ================= */
+        .section-title {
+            max-width: 1200px;
+            margin: 70px auto 30px;
+            padding: 0 24px;
+        }
 
-        /* Footer styling */
+        .section-title span {
+            color: var(--accent);
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
 
-        .footer-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .section-title h3 {
+            font-size: 26px;
+            margin-top: 6px;
+        }
+
+        /* ================= GAME CARDS ================= */
+        .games {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 24px 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 36px;
+        }
+
+        .card {
+            background: var(--bg-elevated);
+            border-radius: 22px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .card img {
             width: 100%;
-            height: 80px;
-            background-color: rgb(32, 27, 58);
+            height: 200px;
+            object-fit: cover;
+            display: block;
         }
 
-        .site-footer p {
-            color: white;
+        .card-content {
+            padding: 24px;
+        }
+
+        .card-content h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 21px;
+        }
+
+        .card-content p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        /* ================= PRICING-STYLE CONTEXT SECTION ================= */
+        .tiers {
+            max-width: 1200px;
+            margin: 0 auto 90px;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .tier {
+            background: var(--bg-surface);
+            border-radius: 26px;
+            border: 1px solid var(--border);
+            padding: 34px 26px;
             text-align: center;
-            margin: 0;
-            padding: 0;
+            box-shadow: var(--shadow);
         }
 
-        .site-footer img {
-            width: 40px;
-            height: 40px;
+        .tier h4 {
+            color: var(--accent);
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .tier p {
+            color: var(--text-muted);
+            font-size: 14.5px;
+            margin-bottom: 18px;
+        }
+
+        .tier ul {
+            list-style: none;
+        }
+
+        .tier li {
+            margin: 10px 0;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #020617;
+            border-top: 1px solid var(--border);
+            padding: 28px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* ================= FIXED ICON ================= */
+        .fixed-icon {
             position: fixed;
-            bottom: 17px;
+            bottom: 20px;
             right: 20px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            border: 3px solid white;
+            border: 2px solid var(--accent);
+            background: #020617;
+            padding: 6px;
             cursor: pointer;
-            z-index: 1;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            z-index: 200;
         }
 
+        /* ================= MEDIA QUERIES ================= */
 
-        /* Responsiveness for Tablets */
+        /* Tablets & phones */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 16px 60px;
+            }
+        }
 
-        @media (max-width: 1024px) {
-
-            .Nav-links {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                white-space: nowrap;
+        /* Small phones */
+        @media (max-width: 480px) {
+            .nav ul {
+                gap: 14px;
             }
 
-            .Nav-links li {
-                flex: 1 1 auto;
+            .card img {
+                height: 180px;
+            }
+        }
+
+        /* Ultra-small devices (<300px) */
+        @media (max-width: 300px) {
+            body {
                 font-size: 14px;
-                padding: 0 10px;
-                border-right: 1px solid var(--secondary-color);
             }
 
-            .Nav-links li:last-child {
-                border-right: none;
-            }
-
-            /* Hero Section */
-            .overlay-box {
-                flex-direction: column;
-                height: auto;
-                padding: 20px;
-            }
-
-            .section1,
-            .section2 {
-                width: 80%;
-                height: auto;
-                margin-bottom: 20px;
-            }
-
-            /* Middle Part */
-            .important {
-                width: 80%;
-                padding: 15px;
-            }
-
-            .love {
-                font-size: 15px;
-            }
-
-            /* Footer Icon */
-            .site-footer img {
-                width: 36px;
-                height: 36px;
-            }
-        }
-
-        /* Responsiveness for Mobile Devices */
-        @media (max-width: 600px) {
-
-            .Nav-links {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                white-space: nowrap;
-            }
-
-            .Nav-links li {
-                flex: 1 1 auto;
-                font-size: 13px;
-                padding: 0 8px;
-                border-right: 1px solid var(--secondary-color);
-            }
-
-            .Nav-links li:last-child {
-                border-right: none;
-            }
-
-            /* Hero Section */
-            .overlay-box {
-                flex-direction: column;
-                height: auto;
-                padding: 10px;
-            }
-
-            .section1,
-            .section2 {
-                width: 90%;
-                height: auto;
-                padding: 15px;
-                margin-bottom: 20px;
-            }
-
-            h3 {
+            .nav h1 {
                 font-size: 18px;
             }
 
-            p {
-                font-size: 13px;
+            .hero h2 {
+                font-size: 22px;
             }
 
-            /* Middle Part */
-
-            .important {
-                width: 90%;
-                padding: 10px;
-            }
-
-            .love {
-                font-size: 14px;
-            }
-
-            /* Footer Icon */
-
-            .site-footer img {
-                width: 32px;
-                height: 32px;
-                bottom: 10px;
-                right: 10px;
+            .fixed-icon {
+                width: 40px;
+                height: 40px;
+                bottom: 12px;
+                right: 12px;
             }
         }
-        
     </style>
 </head>
 
 <body>
+
+    <!-- NAVBAR -->
     <header>
-        <nav class="Nav-bar">
-            <ul class="Nav-links">
+        <nav class="nav">
+            <h1>🎮 Favourite Games</h1>
+            <ul>
                 <li><a href="#">Home</a></li>
+                <li><a href="#">Games</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Blog</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="hero-section">
-        <div class="overlay-box">
-            <section class="section1">
-                <h3>Minecraft</h3>
-                <p>Minecraft is a sandbox video game developed by Mojang Studios. It was created by Markus "Notch"
-                    Persson and released in 2011. In Minecraft, players can build and explore virtual worlds made up of
-                    blocks. The game allows for creativity and exploration, with various modes including survival,
-                    creative, and adventure. Players can gather resources, craft items, and build structures while
-                    facing challenges such as monsters and environmental hazards. Minecraft has become one of the
-                    best-selling video games of all
-                    time, with a large and active community.</p>
-            </section>
+    <!-- HERO -->
+    <section class="hero">
+        <h2>Games That Shaped My Thinking</h2>
+        <p>
+            A dark-themed static website built to practice layout structure,
+            UI hierarchy, and CSS positioning concepts.
+        </p>
+    </section>
 
-            <section class="section2">
-                <h3>Clash Of Clans</h3>
-                <p>Clash of Clans is a mobile strategy game developed by Supercell. Players build and upgrade their
-                    villages, train troops, and raid other players' bases to earn resources. The game features clan
-                    wars, where players can join clans and battle against other clans for rewards. Players can also
-                    participate in events and challenges to earn additional resources and rewards. Clash of Clans has a
-                    strong community and offers regular updates with new content, making it a popular choice among
-                    mobile gamers. The game combines elements of base building, resource management, and strategic
-                    combat, providing a dynamic and engaging gameplay experience.</p>
-            </section>
-        </div>
-    </div>
-    <div class="rest-part">
-        <div class="important">
-            <p class="love">I love these games because they allow me to express my creativity and strategic thinking.
-                Minecraft's
-                open-world exploration and building mechanics provide endless possibilities for creativity, while Clash
-                of Clans offers a competitive edge with its strategic gameplay and clan interactions. Both games have
-                vibrant communities that enhance the overall gaming experience, making them my top favorites.</p>
-        </div>
+    <!-- SECTION TITLE -->
+    <div class="section-title">
+        <span>Showcase</span>
+        <h3>Favourite Games</h3>
     </div>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <p>&copy; 2023 My Favorite Games. All rights reserved.</p>
-            <img class="fixedimg" src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
+    <!-- GAME CARDS -->
+    <section class="games">
+        <div class="card">
+            <img src="https://wallpapercave.com/wp/wp9093209.jpg" alt="Minecraft">
+            <div class="card-content">
+                <h4>Minecraft</h4>
+                <p>
+                    A sandbox game that rewards creativity, exploration,
+                    and problem-solving in an open-ended world.
+                </p>
+            </div>
         </div>
-        <hr>
 
+        <div class="card">
+            <img src="https://wallpapercave.com/wp/wp7429421.jpg" alt="Clash of Clans">
+            <div class="card-content">
+                <h4>Clash of Clans</h4>
+                <p>
+                    A strategy-driven mobile game focused on planning,
+                    resource management, and competitive clan warfare.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    
 </body>
 
 </html>
